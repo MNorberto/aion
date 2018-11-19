@@ -41,7 +41,6 @@ task compileNative(type:Exec) {
     dependsOn 'modCrypto:compileNative'
     dependsOn 'modAionImpl:compileJava'
 
-
     doFirst {
         mkdir "${dirBuildFile}"
         mkdir "${dirNative}/linux/equihash"
@@ -84,6 +83,13 @@ task compileNative(type:Exec) {
 }
 
 subprojects {
+
+    apply plugin: 'jacoco'
+
+    jacoco {
+        toolVersion = "0.8.2+"
+    }
+
     sourceSets { 
         main {
             java.srcDirs = ['src']
